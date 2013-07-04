@@ -20,7 +20,6 @@
     <div id="main">
         <div id="left">
             {include file="module/notice.tpl"}
-			{include file="module/login.tpl"}
             {include file="module/contact.tpl"}
             {include file="module/link.tpl"}
         </div>
