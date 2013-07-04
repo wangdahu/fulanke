@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<site>
+    <admin name="网站后台">
+        <module name="头部">header</module>
+        <module name="主体">main</module>
+    </admin>
+	<basic name="基本设置">
+		<module name="头部">header</module>
+		<module name="主体">basic/main</module>
+	</basic>
+	<info name="系统信息">
+		<module>header</module>
+		<module>info_main</module>
+	</info>
+</site>
