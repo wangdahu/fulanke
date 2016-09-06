@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR);
 require('include/common.php');
 $url = get_url();
 if(S_WEAK_STATIC)

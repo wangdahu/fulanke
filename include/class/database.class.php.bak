@@ -54,10 +54,8 @@ class database
 			  $this->conn->open($str);
 			break;
 			case 'mysql':
-                $this->conn = mysqli_connect($db_path,$db_user,$db_pwd,$db_name);
-                if(mysqli_connect_errno($this->conn)) {
-                    die('Could not connect:'.mysqli_error($this->conn));
-                }
+			  $this->conn = mysqli_connect($db_path,$db_user,$db_pwd, $db_name) or die('Could not connect:'.mysqli_error());
+			  // mysqli_select_db($db_name) or die('Could not select database');
 			  mysqli_query($this->conn, 'set names utf8');
 			break;
 		}
@@ -125,10 +123,7 @@ class database
 			  if($this->record_count > 0)
 			  {
 				  $row = ($this->absolute_page - 1) * $this->page_size + $row;
-                  mysqli_data_seek($this->query_data, $row);
-                  $fields = mysqli_fetch_array($this->query_data);
-                  return isset($fields[$field_name]) ? $fields[$field_name] : '';
-
+				  return mysqli_result($this->query_data,$row,$field_name);
 			  }else{
 				  return '';
 			  }
@@ -160,12 +155,12 @@ class database
 				  $str .= ',' . $this->rs->fields[$i]->name;
 			  }
 			break;
-			case 'mysql':
+            case 'mysql':
+                // echo '<pre>';
+                // var_dump;die;
 			  for($i = 0; $i < $this->fields_count; $i ++)
 			  {
-                 mysqli_data_seek($this->query_data, $i);
-                  $fields = mysqli_fetch_field($this->query_data);
-                  $str .= ',' . $fields->name;
+				  $str .= ',' . $this->query_data->fetch_field()->name;
 			  }
 			break;
 		}
